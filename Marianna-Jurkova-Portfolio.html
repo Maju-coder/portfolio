@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marianna Jurková - Spaces Between People</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Helvetica Neue, Arial, sans-serif;
+            background-color: #0d0d0d;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        /* Top Header - Fixed */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #0d0d0d;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+            z-index: 1000;
+        }
+
+        .top-header h1 {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .top-nav a {
+            text-decoration: none;
+            color: #f5f5f5;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .top-nav a:hover {
+            color: #bbb;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 40px;
+            background-color: #0d0d0d;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #bbb;
+            max-width: 700px;
+            margin-bottom: 60px;
+        }
+
+        .scroll-prompt {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background-color: #0d0d0d;
+            padding: 80px 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(0.98);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        .gallery-caption p {
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #f5f5f5;
+            margin: 0;
+        }
+
+        /* About Section */
+        .about {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            text-align: left;
+            background-color: #0d0d0d;
+        }
+
+        .about h2 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .about p {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #bbb;
+            margin-bottom: 30px;
+        }
+
+        .about p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background-color: #2a2a2a;
+            margin: 80px auto;
+            max-width: 1400px;
+            width: 80%;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #2a2a2a;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        footer h3 {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #f5f5f5;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 52px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 15px;
+            }
+            .top-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .top-nav {
+                gap: 20px;
+            }
+            .hero-title {
+                font-size: 42px;
+            }
+            .hero-subtitle {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header with Name -->
+    <header class="top-header">
+        <h1>Marianna Jurková</h1>
+        <nav class="top-nav">
+            <a onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})">Gallery</a>
+            <a onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About</a>
+            <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2 class="hero-title">Spaces Between People</h2>
+        <p class="hero-subtitle">Photography exploring places of collective energy—where meaning emerges not from individuals, but from the spaces they occupy together.</p>
+        <p class="scroll-prompt">SCROLL TO EXPLORE</p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-item">
+            <img src="temple.jpg" alt="TEMPLE">
+            <div class="gallery-caption"><p>TEMPLE</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Breakfast.jpg" alt="BREAKFAST">
+            <div class="gallery-caption"><p>BREAKFAST</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="time-capsule.jpg" alt="TIME CAPSULE">
+            <div class="gallery-caption"><p>TIME CAPSULE</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="dinner.jpg" alt="DINNER">
+            <div class="gallery-caption"><p>DINNER</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Copenhagen-dressed-in-Pink.jpg" alt="COPENHAGEN DRESSED IN PINK">
+            <div class="gallery-caption"><p>COPENHAGEN DRESSED IN PINK</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="baby.jpg" alt="BABY">
+            <div class="gallery-caption"><p>BABY</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="flow.jpg" alt="FLOW">
+            <div class="gallery-caption"><p>FLOW</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="City-garden.jpg" alt="CITY GARDEN">
+            <div class="gallery-caption"><p>CITY GARDEN</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="effort.jpg" alt="EFFORT">
+            <div class="gallery-caption"><p>EFFORT</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="balance.jpg" alt="BALANCE">
+            <div class="gallery-caption"><p>BALANCE</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="sun-above.jpg" alt="SUNSET">
+            <div class="gallery-caption"><p>SUNSET</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="focus.jpg" alt="FOCUS">
+            <div class="gallery-caption"><p>FOCUS</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Traces.jpg" alt="TRACES">
+            <div class="gallery-caption"><p>TRACES</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="moment.jpg" alt="MOMENT">
+            <div class="gallery-caption"><p>MOMENT</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="raindrops.jpg" alt="RAINDROPS">
+            <div class="gallery-caption"><p>RAINDROPS</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Cleanse.jpg" alt="CLEANSE">
+            <div class="gallery-caption"><p>CLEANSE</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Noise.jpg" alt="NOISE">
+            <div class="gallery-caption"><p>NOISE</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Water-dust.jpg" alt="RING">
+            <div class="gallery-caption"><p>RING</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Birthday-Evening.jpg" alt="BIRTHDAY EVENING">
+            <div class="gallery-caption"><p>BIRTHDAY EVENING</p></div>
+        </div>
+        <div class="gallery-item">
+            <img src="riders.jpg" alt="RIDERS">
+            <div class="gallery-caption"><p>RIDERS</p></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About This Project</h2>
+        <p>These photographs explore spaces of gathering—not as portraits of individuals, but as reflections on collective presence. From crowded streets to emptied stadiums, from intimate moments among those closest to us to architectural environments shaped to hold human bodies, each image considers how we inhabit shared space. Water appears as both setting and subject—a surface for quiet reflection, a field of motion and effort, a place where stillness and intensity coexist.</p>
+        <p>The work is rooted in the idea that significance often resides not in singular moments, but in the spaces between them. Where collective energy emerges, whether visible or latent. These are gathering grounds, both occupied and waiting. Moments of stillness and effort coexist with movement and chaos. Life in all its forms—human presence, fleeting shadows, traces of growth—creates meaning through proximity and shared breath.</p>
+        <p>Shot across multiple locations and seasons, this body of work reflects an ongoing conversation about how we occupy space together, and how meaning is constructed through presence—our own and others'. Some moments are celebrated, others pass unnoticed. Yet all contain the essence of the space between people. Of what it means to exist in relation to one another.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Footer Contact -->
+    <footer id="contact">
+        <h3>Get in Touch</h3>
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/marianna-jurkov-b09322240" target="_blank">LinkedIn</a>
+            <a href="mailto:marianka.j@gmail.com">Email</a>
+        </div>
+        <p style="color: #666; margin-top: 30px; font-size: 12px;">© 2026 Spaces Between People. All rights reserved.</p>
+    </footer>
+</body>
+</html>
